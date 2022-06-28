@@ -10,9 +10,12 @@ public class MainMenu : MonoBehaviour
     public Text soulweaponDialogue;
     public Image fadeImg;
     public Canvas fadeIntCanvas;
+    public Image circleImg;
     private float targetAlpha;
     public float fadeRate;
     private bool isPlaying = false;
+    private float targetCircleScale = 450f;
+
 
     public void SetActiveDialouge(){
         soulweaponDialogue.gameObject.SetActive(true);
@@ -21,7 +24,7 @@ public class MainMenu : MonoBehaviour
         soulweaponDialogue.gameObject.SetActive(false);
     }
 
-    IEnumerator FadeIn(int sceneNumber){
+    IEnumerator FadeIn(){
         isPlaying = true;
         
         fadeIntCanvas.sortingOrder = 1;
@@ -29,10 +32,23 @@ public class MainMenu : MonoBehaviour
         targetAlpha = 1.0f;
         Color fadeColor = fadeImg.color;
         while(Mathf.Abs(fadeColor.a - targetAlpha) > 0.0001f){
-            Debug.Log(fadeImg.material.color.a);
+            Debug.Log(fadeImg.color.a);
             fadeColor.a = Mathf.Lerp(fadeColor.a, targetAlpha, fadeRate * Time.deltaTime);
             fadeImg.color = fadeColor;
             yield return null;
+        }
+    }
+
+    IEnumerator CircleFadeIn(){
+
+        yield return null;
+    }
+
+    private void Update() {
+        if(fadeImg.color.a > 0.99f){
+            StopCoroutine("FadeIn");
+            isPlaying = false;
+            SceneManager.LoadScene(1);
         }
     }
 
@@ -40,12 +56,12 @@ public class MainMenu : MonoBehaviour
 
     public void OnClickStory(){
         Debug.Log("이야기 버튼 누름");
-        StartCoroutine("FadeIn", 1);
+        StartCoroutine("FadeIn");
    }
 
     public void onClickInfo(){
         Debug.Log("내 정보 버튼 누름");
-        StartCoroutine("FadeIn", 2);
+        StartCoroutine("FadeIn");
     }
     public void onClickInteraction(){
         Debug.Log("소울웨폰 인연 시스템");
