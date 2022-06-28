@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
     // 0: Topdown, 1: Platformer
     private int menuOrder;
 
-
+    // Divided functions for Invoke()
     public void SetActiveDialouge(){
         soulweaponDialogue.gameObject.SetActive(true);
     }
@@ -33,8 +33,9 @@ public class MainMenu : MonoBehaviour
 
         targetAlpha = 1.0f;
         Color fadeColor = fadeImg.color;
+        // Up BlackScreen Alpha value via lerp
         while(Mathf.Abs(fadeColor.a - targetAlpha) > 0.0001f){
-            Debug.Log(fadeImg.color.a);
+            // Debug.Log(fadeImg.color.a);
             fadeColor.a = Mathf.Lerp(fadeColor.a, targetAlpha, fadeRate * Time.deltaTime);
             fadeImg.color = fadeColor;
             yield return null;
@@ -42,20 +43,29 @@ public class MainMenu : MonoBehaviour
     }
 
     IEnumerator CircleFadeIn(){
+        
+        isPlaying = true;
+
         fadeInCanvas.sortingOrder = 1;
+        // SetActive 대신 Alpha 0로 안보이게 했던 Circle을 보여주기
         Color tempColor = circleImg.color;
         tempColor.a = 1;
         circleImg.color = tempColor;
 
         targetCircleSize = new Vector2(4000f, 4000f);
 
-        while(circleImg.rectTransform.sizeDelta != targetCircleSize){
+        Vector2 target = circleImg.rectTransform.sizeDelta;
+
+        // Fill Canavas fully
+        while(target != targetCircleSize){
             circleImg.rectTransform.sizeDelta = Vector2.Lerp(circleImg.rectTransform.sizeDelta, targetCircleSize, fadeRate * Time.deltaTime);
             yield return null;
         }
     }
 
     private void Update() {
+        
+        // Mathf.Lerp() Can't reach target value. so written like these
         if(fadeImg.color.a > 0.99f){
             StopCoroutine("FadeIn");
             isPlaying = false;
@@ -73,18 +83,22 @@ public class MainMenu : MonoBehaviour
 
     public void OnClickStory(){
         Debug.Log("이야기 버튼 누름");
-        menuOrder = 1;
-        StartCoroutine("FadeIn");
+        if(!isPlaying){
+            menuOrder = 1;
+            StartCoroutine("FadeIn");
+
+        }
    }
 
     public void onClickInfo(){
         Debug.Log("내 정보 버튼 누름");
-        menuOrder = 2;
-        StartCoroutine("CircleFadeIn");
+        if(!isPlaying){
+            menuOrder = 2;
+            StartCoroutine("CircleFadeIn");
+        }
     }
     public void onClickInteraction(){
         Debug.Log("소울웨폰 인연 시스템");
-
     }
     
     public void onClickSoulweapon(){
@@ -97,5 +111,4 @@ public class MainMenu : MonoBehaviour
     public void onClickSetting(){
         Debug.Log("설정 버튼 누름");
     }
-
 }
