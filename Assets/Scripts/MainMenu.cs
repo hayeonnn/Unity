@@ -7,14 +7,16 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     
+    public Canvas fadeInCanvas;
     public Text soulweaponDialogue;
     public Image fadeImg;
-    public Canvas fadeIntCanvas;
     public Image circleImg;
     private float targetAlpha;
     public float fadeRate;
     private bool isPlaying = false;
-    private float targetCircleScale = 450f;
+    private Vector2 targetCircleSize;
+    // 0: Topdown, 1: Platformer
+    private int menuOrder;
 
 
     public void SetActiveDialouge(){
@@ -27,7 +29,7 @@ public class MainMenu : MonoBehaviour
     IEnumerator FadeIn(){
         isPlaying = true;
         
-        fadeIntCanvas.sortingOrder = 1;
+        fadeInCanvas.sortingOrder = 1;
 
         targetAlpha = 1.0f;
         Color fadeColor = fadeImg.color;
@@ -40,28 +42,45 @@ public class MainMenu : MonoBehaviour
     }
 
     IEnumerator CircleFadeIn(){
+        fadeInCanvas.sortingOrder = 1;
+        Color tempColor = circleImg.color;
+        tempColor.a = 1;
+        circleImg.color = tempColor;
 
-        yield return null;
+        targetCircleSize = new Vector2(4000f, 4000f);
+
+        while(circleImg.rectTransform.sizeDelta != targetCircleSize){
+            circleImg.rectTransform.sizeDelta = Vector2.Lerp(circleImg.rectTransform.sizeDelta, targetCircleSize, fadeRate * Time.deltaTime);
+            yield return null;
+        }
     }
 
     private void Update() {
         if(fadeImg.color.a > 0.99f){
             StopCoroutine("FadeIn");
             isPlaying = false;
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(menuOrder);
         }
+        if(circleImg.rectTransform.sizeDelta.x >= 3800) {
+            StopCoroutine("CircleFadeIn");
+            isPlaying = false;
+            SceneManager.LoadScene(menuOrder);
+        }
+
     }
 
 
 
     public void OnClickStory(){
         Debug.Log("이야기 버튼 누름");
+        menuOrder = 1;
         StartCoroutine("FadeIn");
    }
 
     public void onClickInfo(){
         Debug.Log("내 정보 버튼 누름");
-        StartCoroutine("FadeIn");
+        menuOrder = 2;
+        StartCoroutine("CircleFadeIn");
     }
     public void onClickInteraction(){
         Debug.Log("소울웨폰 인연 시스템");
