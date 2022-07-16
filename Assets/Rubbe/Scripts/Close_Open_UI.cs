@@ -28,4 +28,14 @@ public class Close_Open_UI : MonoBehaviour
     {
         targetUI.SetActive(true);
     }
+
+    public void OpenAndCloseTargetUI(float delaytime)
+    {
+        if (targetUI.activeSelf != true)
+        {
+            targetUI.SetActive(true);
+            Debug.Log(delaytime);
+            Invoke("CloseTargetUI", delaytime);
+        }
+    }
 }
