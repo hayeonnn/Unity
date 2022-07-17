@@ -93,7 +93,7 @@ public class MainMenu : MonoBehaviour
     public void onClickInfo(){
         Debug.Log("내 정보 버튼 누름");
         if(!isPlaying){
-            menuOrder = 2;
+            menuOrder = 4;
             StartCoroutine("CircleFadeIn");
         }
     }
@@ -111,5 +111,10 @@ public class MainMenu : MonoBehaviour
     public void onClickSetting(){
         Debug.Log("설정 버튼 누름");
         SceneManager.LoadScene(3);
+    }
+
+    public void onClickCostumeButton(){
+        Debug.Log("코스튬 버튼 누름");
+        SceneManager.LoadScene(5);
     }
 }
