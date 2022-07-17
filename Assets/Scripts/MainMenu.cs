@@ -110,5 +110,6 @@ public class MainMenu : MonoBehaviour
 
     public void onClickSetting(){
         Debug.Log("설정 버튼 누름");
+        SceneManager.LoadScene(3);
     }
 }
