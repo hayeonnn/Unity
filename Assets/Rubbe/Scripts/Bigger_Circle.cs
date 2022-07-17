@@ -13,7 +13,9 @@ public class Bigger_Circle : MonoBehaviour
         time += Time.deltaTime * 30;
         if (time > 30f)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+            //UnityEditor.EditorApplication.isPlaying = false;
+            gameObject.SetActive(false);
+            time = 0;
         }
     }
 }
