@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FadeOut : MonoBehaviour
+public class FadeIn : MonoBehaviour
 {
 
-    private bool isPlaying;
+    public static bool isPlaying;
     private float targetAlpha;
     public Image fadeImg;
     public float fadeRate;
 
-    IEnumerator FadeOutCoroutine(){
+    IEnumerator FadeInCoroutine(){
         isPlaying = true;
-        targetAlpha = 0.00000001f;
+        targetAlpha = 1.0f;
 
         Color fadeColor = fadeImg.color;
 
 
 
-        while(fadeColor.a > targetAlpha){
-
-            if(fadeImg.color.a < 0.07f){
-                fadeImg.gameObject.SetActive(false);
+        while(Mathf.Abs(fadeColor.a - targetAlpha) > 0.0001f){
+            if(fadeImg.color.a >= 0.96f){
+                isPlaying = false;
+                break;
             }
             // Debug.Log(fadeImg.color.a);
             fadeColor.a = Mathf.Lerp(fadeColor.a, targetAlpha, fadeRate * Time.deltaTime);
@@ -31,10 +31,13 @@ public class FadeOut : MonoBehaviour
         }
     }
 
-    private void Awake() {
+    public void onClickPrevButton(){
+        Debug.Log("This is FadeIn.cs");
+
         fadeImg.gameObject.SetActive(true);
         
-        StartCoroutine("FadeOutCoroutine");
+
+        StartCoroutine("FadeInCoroutine");
     }
 
 }

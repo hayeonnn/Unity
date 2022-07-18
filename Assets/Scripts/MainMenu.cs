@@ -69,7 +69,7 @@ public class MainMenu : MonoBehaviour
         if(fadeImg.color.a > 0.99f){
             StopCoroutine("FadeIn");
             isPlaying = false;
-            SceneManager.LoadScene(menuOrder);
+            // SceneManager.LoadScene(menuOrder);
         }
         if(circleImg.rectTransform.sizeDelta.x >= 3800) {
             StopCoroutine("CircleFadeIn");
@@ -85,8 +85,8 @@ public class MainMenu : MonoBehaviour
         Debug.Log("이야기 버튼 누름");
         if(!isPlaying){
             menuOrder = 1;
-            StartCoroutine("FadeIn");
-
+            SceneManager.LoadScene(menuOrder);
+            // StartCoroutine("FadeIn");
         }
    }
 
