@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Rubbe/Scenes/Custom.unity
+    guid: bdfb5bad6db1b1a4ebd7cfb41edfdee7
+  - enabled: 1
+    path: Assets/Rubbe/Scenes/Main.unity
+    guid: e276b5ce7404a6e4fa88b75221c09611
   m_configObjects: {}
