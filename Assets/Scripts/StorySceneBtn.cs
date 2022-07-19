@@ -7,10 +7,6 @@ using UnityEngine.SceneManagement;
 public class StorySceneBtn : MonoBehaviour
 {
     public GameObject summary;
-    private void Start()
-    {
-        summary.SetActive(false);
-    }
     public void clickToMain()
     {
         SceneManager.LoadScene("SampleScene");
@@ -19,11 +15,6 @@ public class StorySceneBtn : MonoBehaviour
     public void clickToSetting()
     {
         SceneManager.LoadScene("SettingScene");
-    }
-    public void clickToMap()
-    {
-        summary.SetActive(true);
-
     }
     public void clickToClose()
     {
