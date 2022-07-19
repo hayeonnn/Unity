@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ClickEvent : MonoBehaviour
 {
@@ -23,6 +24,11 @@ public class ClickEvent : MonoBehaviour
         talkPanel.SetActive(true);
         text.text = "¿Í¾Æ, ¸»°É¾îÁà¼­ ±â»µ!";
         Invoke("falsePanel",5.0f);
+    }
+
+    public void clickToStory()
+    {
+        SceneManager.LoadScene("StoryMap");
     }
 
     void falsePanel()

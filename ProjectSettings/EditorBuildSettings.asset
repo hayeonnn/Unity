@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Rubbe/Scenes/Main.unity
     guid: e276b5ce7404a6e4fa88b75221c09611
+  - enabled: 1
+    path: Assets/Scenes/StoryMap.unity
+    guid: 56cfdcb3a5deb1f4082a9b598809e040
+  - enabled: 1
+    path: Assets/Scenes/SettingScene.unity
+    guid: a6c843a1917dde044a03475ba133c32f
   m_configObjects: {}
