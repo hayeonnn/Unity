@@ -135,10 +135,14 @@ QualitySettings:
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
     vSyncCount: 1
 =======
     vSyncCount: 0
 >>>>>>> feature-stage
+=======
+    vSyncCount: 0
+>>>>>>> f2aec80782c51681beac777d655d34afc7605757
     lodBias: 1
     maximumLODLevel: 0
     streamingMipmapsActive: 0
