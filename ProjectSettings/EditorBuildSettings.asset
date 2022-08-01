@@ -9,12 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 8c0acfc0383b56a4ca4f422d8e368f85
   - enabled: 1
-    path: Assets/Scenes/Topdown.unity
-    guid: 443e167265e3e1f40987552ac110d6f4
-  - enabled: 1
-    path: Assets/Scenes/Platform.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/SettingScene.unity
     guid: 9db8cc5b8162db64fbc30eb8b2a5dcd4
   - enabled: 1
