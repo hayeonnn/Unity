@@ -55,6 +55,5 @@ public class Information : MonoBehaviour {
             Debug.Log("isPlaying false");
             SceneManager.LoadScene(0);
         }
-
     }
 }
