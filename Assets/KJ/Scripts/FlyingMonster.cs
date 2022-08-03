@@ -19,7 +19,7 @@ public class FlyingMonster : MonoBehaviour
         anim = GetComponent<Animator>();
         isPatrol = true;
         thinkTime = 1.5f;
-        Invoke("PatrolMovement", thinkTime);
+        Invoke("PatrolMovement", thinkTime); // 배회하기 함수
     }
     
     private void Update() {
@@ -27,25 +27,31 @@ public class FlyingMonster : MonoBehaviour
         target = player.transform.position;
 
         betweenDisatance = Vector2.Distance(transform.position, target);
-        Debug.Log(betweenDisatance);
+        // Debug.Log(betweenDisatance);
         
-
+        // 너무 위로 떠올랐을 때 제약
+        if(transform.position.y >= 6f){
+            Debug.Log("Too high");
+            Vector2 constraintFly = new Vector2(0, -2);
+            rigid.velocity = constraintFly;
+        }
         
-
-        if(betweenDisatance < 4f){
+        // 플레이어와의 거리가 4 이하일 때 (벡터 연산)
+        if(betweenDisatance < 4f && isPatrol){
             isPatrol = false;
             FoundPlayer(step);
         }
     }
-
+    // 플레이어와의 거리가 가까울 때 취하는 행동함수
     private void FoundPlayer(float step){
         anim.SetBool("isPlayerNear", true);
 
         transform.position = Vector2.MoveTowards(transform.position, target, step);
     }
 
+    // 배회 함수
     public void PatrolMovement(){
-        float randomX = Random.Range(-1, 4), randomY = Random.Range(-1, 4);
+        float randomX = Random.Range(-1, 7), randomY = Random.Range(-1, 5);
         float speed = 3f * Time.deltaTime;
 
         Vector2 nextMove = new Vector2(randomX, randomY);
