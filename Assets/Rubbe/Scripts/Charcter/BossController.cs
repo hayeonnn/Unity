@@ -96,7 +96,7 @@ public class BossController : MonoBehaviour
     void ComeBack()
     {
         transform.GetComponentInParent<Rigidbody2D>().velocity = Vector2.zero;
-        Vector3 temp=new Vector3(4.96000004f, -1.0032717f, 0);
+        Vector3 temp=new Vector3(99.6999969f, -23.0048084f, 0f);
         transform.parent.transform.position = temp;
     }
 
