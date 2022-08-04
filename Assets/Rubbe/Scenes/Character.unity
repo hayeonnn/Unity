@@ -1581,6 +1581,7 @@ MonoBehaviour:
   m_tfArrow: {fileID: 1995487557}
   MainChar: {fileID: 1946201285}
   t_MainCharacter: {x: 0, y: 0}
+  boss_Phase: 1
 --- !u!4 &1995487557 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2706958362263843023, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
@@ -1593,6 +1594,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 57539123}
     m_Modifications:
+    - target: {fileID: -7946056217724318946, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143425006914491089, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681635626750433986, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2681635626750433986, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
       propertyPath: m_GravityScale
       value: 0
@@ -1610,12 +1623,16 @@ PrefabInstance:
       value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 2706958362263843023, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706958362263843023, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.144
+      value: -0.277
       objectReference: {fileID: 0}
     - target: {fileID: 2706958362263843023, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.015
+      value: 0.209
       objectReference: {fileID: 0}
     - target: {fileID: 2706958362263843023, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1653,5 +1670,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Attack
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2738134752727339949, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883608648184867779, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2681635626750433986, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
