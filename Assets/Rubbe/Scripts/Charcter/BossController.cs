@@ -81,7 +81,7 @@ public class BossController : MonoBehaviour
 
     void JumpToPlayer()
     {
-        transform.GetComponentInParent<Rigidbody2D>().velocity = transform.parent.up * -5f;
+        transform.GetComponentInParent<Rigidbody2D>().velocity = transform.parent.up * -10f;
         transform.parent.transform.position = MainChar.transform.position + (Vector3.up * 15f);
     }
 
