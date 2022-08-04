@@ -5,8 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float movementSpeed = 3.0f;
+    public float jumpPower;
     Vector2 movement = new Vector2();
-    Rigidbody2D rigidbody2D;
+    Rigidbody2D rigid;
+
+    bool isJump = false;
 
     SpriteRenderer rend;
 
@@ -22,7 +25,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
     }
 
@@ -30,21 +33,48 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         UpdateState();
+
+        if (Input.GetButtonDown("Jump") && isJump == false)
+        {
+            isJump = true;
+            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        }
     }
 
     private void FixedUpdate()
     {
-        MoveCaharcter();
+        MoveCharcter();
+
+        if (rigid.velocity.y < 0)
+        {
+            Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
+            RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
+            if (rayHit.collider != null)
+            {
+                if (rayHit.collider != null)
+                {
+                    if (rayHit.distance < 0.5f)
+                    {
+                        isJump = false;
+                    }
+                }
+            }
+        }
     }
 
-    private void MoveCaharcter()
+    private void MoveCharcter()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         //movement.y = Input.GetAxisRaw("Vertical");
 
         movement.Normalize();
 
-        rigidbody2D.velocity = movement * movementSpeed;
+        //rigid.velocity = movement * movementSpeed;
+
+        Vector2 vel = rigid.velocity;
+        vel.x = movement.x * movementSpeed;
+        rigid.velocity = vel;
+
     }
 
     private void UpdateState()

@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shimeji Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 37de9274e59fbba438208bed385e8326, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 0febc0103467f7448a971c7bb4128b3a, type: 3}
+  - {fileID: 21300000, guid: 91868460546fcc049a5cc38fe3285495, type: 3}
+  - {fileID: 21300000, guid: 71017070112ac0a458f77904f44ba9e5, type: 3}
+  - {fileID: 21300000, guid: d640e690eb264a64a8cafafe747aaf9b, type: 3}
+  - {fileID: 21300000, guid: ecfb64b008cc14a4d88cb006b1374123, type: 3}
+  - {fileID: 21300000, guid: 634e79b064e944547aac2efde876298d, type: 3}
+  - {fileID: 21300000, guid: dcf2701125059fa45bf39d1521441827, type: 3}
+  - {fileID: 21300000, guid: 8fb83921cf4ba9941aaeb45588f8c876, type: 3}
+  - {fileID: 21300000, guid: 802197616ffcd654097d562d38c102d7, type: 3}
+  - {fileID: 21300000, guid: 8287f502c60cfff4cbcc875028ed6445, type: 3}
+  - {fileID: 21300000, guid: b8fc5362bd8e991409921f04974a50b8, type: 3}
+  - {fileID: 21300000, guid: 99e84733f39f98245827d854fc3b59f5, type: 3}
+  - {fileID: 21300000, guid: 712e93534eb1a3b4a886bbd9778a0dc2, type: 3}
+  - {fileID: 21300000, guid: a6e94563e93c67d49ab42b96d736ebd4, type: 3}
+  - {fileID: 21300000, guid: a38741a38724c794399126d1dfab7282, type: 3}
+  - {fileID: 21300000, guid: 6c19f9a3f5c44164a8a0e6c60e67f7b9, type: 3}
+  - {fileID: 21300000, guid: 73c7fed382fd1f54a9ef175a92c6d7bc, type: 3}
+  - {fileID: 21300000, guid: b1f927d5da271464d969c01f79d638a4, type: 3}
+  - {fileID: 21300000, guid: 97286fd50341aa549b1174aad0fc320e, type: 3}
+  - {fileID: 21300000, guid: 26f9fae53e6841d43aefd1b5b8886cf3, type: 3}
+  - {fileID: 21300000, guid: 6757e1068dd11ab4f8ea09421ae5e8d5, type: 3}
+  - {fileID: 21300000, guid: b5c61b06e0ba43d4b8bcd4f1e631881b, type: 3}
+  - {fileID: 21300000, guid: 10026f06c2be0b3428c4cd18a59dedd1, type: 3}
+  - {fileID: 21300000, guid: adb1d226c3104074f9c9e4fa2f14ff1a, type: 3}
+  - {fileID: 21300000, guid: 84747c6639093d9438ca10cc33d7adcd, type: 3}
+  - {fileID: 21300000, guid: 0e8b36e624e4c8748aed5185de01f12d, type: 3}
+  - {fileID: 21300000, guid: b355ed174e0556e4fbf8ebf6b5b93c1a, type: 3}
+  - {fileID: 21300000, guid: 831b38972f1a62e43b245c055129d129, type: 3}
+  - {fileID: 21300000, guid: b96d17e78b04d914b959e7327fead73d, type: 3}
+  - {fileID: 21300000, guid: d74e2fe785a9d8843b98f084985f0466, type: 3}
+  - {fileID: 21300000, guid: 7cf3b2e8fa7b31c41a5a4d092aa98d21, type: 3}
+  - {fileID: 21300000, guid: 900c776a3e033ba4685bc9578d43a0e0, type: 3}
+  - {fileID: 21300000, guid: 0da595aabf76dc647a605bb78890593c, type: 3}
+  - {fileID: 21300000, guid: c3a1de2b049286640bff16c1b0202c8e, type: 3}
+  - {fileID: 21300000, guid: 1da4c98bdbc9d024aac59b67dfe806b8, type: 3}
+  - {fileID: 21300000, guid: 9a25759b615f8bb418831770369065b4, type: 3}
+  - {fileID: 21300000, guid: 0934892cac0186040a23dd2120908aa1, type: 3}
+  - {fileID: 21300000, guid: 9897593c532a0c64183198ef108693d1, type: 3}
+  - {fileID: 21300000, guid: 74ca0c3caaa9f3c41ab46f426f370697, type: 3}
+  - {fileID: 21300000, guid: cc0b9a7d8cda08048b5a69cca4decb53, type: 3}
+  - {fileID: 21300000, guid: dd64ae0e211f9d8429f989cdb876ea71, type: 3}
+  - {fileID: 21300000, guid: e8ed453e4b1ec044b8d611ccb2496a77, type: 3}
+  - {fileID: 21300000, guid: 9dead21fbdd024b4b8c146ce059b46d4, type: 3}
+  - {fileID: 21300000, guid: 364ce5af39d2d2d48b6ccdaf0e23264b, type: 3}
+  - {fileID: 21300000, guid: 7bf65faf6e4d4004faf66997e1488bbc, type: 3}
+  - {fileID: 21300000, guid: a25049bfac4ef0d48b2748bfe52af42d, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - shime22
+  - shime19
+  - shime1
+  - shime10
+  - shime3
+  - shime27
+  - shime8
+  - shime9
+  - shime44
+  - shime6
+  - shime32
+  - shime20
+  - shime41
+  - shime31
+  - shime46
+  - shime45
+  - shime34
+  - shime12
+  - shime40
+  - shime2
+  - shime21
+  - shime29
+  - shime25
+  - shime26
+  - shime17
+  - shime18
+  - shime11
+  - shime13
+  - shime23
+  - shime5
+  - shime42
+  - shime35
+  - shime24
+  - shime43
+  - shime30
+  - shime28
+  - shime16
+  - shime38
+  - shime14
+  - shime39
+  - shime33
+  - shime7
+  - shime37
+  - shime36
+  - shime15
+  - shime4
+  m_RenderDataMap: {}
+  m_Tag: Shimeji Atlas
+  m_IsVariant: 0

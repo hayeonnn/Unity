@@ -22,7 +22,7 @@ public class FlyingMonster : MonoBehaviour
         Invoke("PatrolMovement", thinkTime); // 배회하기 함수
     }
     
-    private void Update() {
+    private void FixedUpdate() {
         float step = moveSpeed * Time.deltaTime;
         target = player.transform.position;
 
@@ -31,22 +31,25 @@ public class FlyingMonster : MonoBehaviour
         
         // 너무 위로 떠올랐을 때 제약
         if(transform.position.y >= 6f){
-            Debug.Log("Too high");
+            // Debug.Log("Too high");
             Vector2 constraintFly = new Vector2(0, -2);
             rigid.velocity = constraintFly;
         }
         
         // 플레이어와의 거리가 4 이하일 때 (벡터 연산)
-        if(betweenDisatance < 4f && isPatrol){
-            isPatrol = false;
+        if(betweenDisatance < 3f && isPatrol){
             FoundPlayer(step);
         }
+
+        if(!isPatrol)
+            transform.position = Vector2.MoveTowards(transform.position, target, step);
+
     }
     // 플레이어와의 거리가 가까울 때 취하는 행동함수
     private void FoundPlayer(float step){
+        isPatrol = false;
         anim.SetBool("isPlayerNear", true);
-
-        transform.position = Vector2.MoveTowards(transform.position, target, step);
+        CancelInvoke("PatrolMovement");
     }
 
     // 배회 함수
