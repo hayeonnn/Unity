@@ -13,12 +13,15 @@ public class FlyingMonster : MonoBehaviour
     private bool isPatrol;
     public float thinkTime;
     Animator anim;
+    public float randomX, randomY;
+    public Vector2 randMove, nextMove;
     
     private void Awake() {
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         isPatrol = true;
-        thinkTime = 1.5f;
+        thinkTime = 1f;
+        position = transform.position;
         Invoke("PatrolMovement", thinkTime); // 배회하기 함수
     }
     
@@ -37,13 +40,16 @@ public class FlyingMonster : MonoBehaviour
         }
         
         // 플레이어와의 거리가 4 이하일 때 (벡터 연산)
-        if(betweenDisatance < 3f && isPatrol){
+        if(betweenDisatance < 6f && isPatrol){
             FoundPlayer(step);
         }
 
         if(!isPatrol)
             transform.position = Vector2.MoveTowards(transform.position, target, step);
 
+        else {
+            transform.position = Vector2.MoveTowards(transform.position, nextMove, moveSpeed * Time.deltaTime);
+        }
     }
     // 플레이어와의 거리가 가까울 때 취하는 행동함수
     private void FoundPlayer(float step){
@@ -54,16 +60,11 @@ public class FlyingMonster : MonoBehaviour
 
     // 배회 함수
     public void PatrolMovement(){
-        float randomX = Random.Range(-1, 7), randomY = Random.Range(-1, 5);
-        float speed = 3f * Time.deltaTime;
+        randomX = Random.Range(-5, 6);
+        randomY = Random.Range(-5, 6);
 
-        Vector2 nextMove = new Vector2(randomX, randomY);
-        // Debug.Log(nextMove);
-        Vector2 currentVector = rigid.velocity;
-        currentVector.x = randomX;
-        currentVector.y = randomY;
-        
-        rigid.velocity = currentVector;
+        randMove = new Vector2(randomX, randomY);
+        nextMove = position + randMove;
         
         Invoke("PatrolMovement", thinkTime);
     }
