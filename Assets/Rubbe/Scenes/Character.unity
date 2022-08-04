@@ -10821,7 +10821,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2681635626750433986, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 518e8479b2a11d94cb1a71ed60333ade, type: 3}
-=======
   m_Offset: {x: 0.0065550804, y: -0.0021853845}
   m_Size: {x: 0.9260287, y: 1.2668909}
   m_Direction: 0
