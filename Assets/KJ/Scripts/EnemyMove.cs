@@ -50,7 +50,7 @@ public class EnemyMove : MonoBehaviour{
     public void Turn(){
         nextMove = nextMove * -1;
         spriteRenderer.flipX = nextMove == 1;
-
+        
         CancelInvoke();
         Invoke("Think", 2);
     }
