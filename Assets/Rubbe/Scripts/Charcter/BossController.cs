@@ -56,7 +56,29 @@ public class BossController : MonoBehaviour
     {
         float distance = Vector2.Distance(t_MainCharacter, transform.position);
         GameObject t_arrow = Instantiate(m_goPrefab, m_tfArrow.position, m_tfArrow.rotation);
-        t_arrow.GetComponent<Rigidbody2D>().velocity = (t_arrow.transform.right * 9f * distance / 8) + (t_arrow.transform.up * -2f * distance / 5);
+        //t_arrow.GetComponent<Rigidbody2D>().velocity = (t_arrow.transform.right * 9f * distance / 8) + (t_arrow.transform.up * -2f * distance / 5);
+        t_arrow.GetComponent<Rigidbody2D>().velocity = calcBallisticVelocityVector(m_tfArrow.position, t_MainCharacter,45);
+    }
+
+    private Vector2 calcBallisticVelocityVector(Vector2 initialPos, Vector2 finalPos, float angle)
+    {
+        var toPos = initialPos - finalPos;
+
+        var h = toPos.y;
+
+        toPos.y = 0;
+        var r = toPos.magnitude;
+
+        var g = -Physics.gravity.y;
+
+        var a = Mathf.Deg2Rad * angle;
+
+        var vI = Mathf.Sqrt(((Mathf.Pow(r, 2f) * g)) / (r * Mathf.Sin(2f * a) + 2f * h * Mathf.Pow(Mathf.Cos(a), 2f)));
+
+        Vector2 velocity = (finalPos- initialPos).normalized * Mathf.Cos(a);
+        velocity.y = Mathf.Sin(a);
+
+        return velocity * vI;
     }
 
     void JumpPhase1()
