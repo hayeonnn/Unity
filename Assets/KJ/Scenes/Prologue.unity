@@ -496,6 +496,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d5f682242b4d247a2d3828f3c6e321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameText: {fileID: 636597026}
+  dialogueText: {fileID: 37458204}
+  CentreText: {fileID: 2090931954}
+  dialogue_running: 0
+  skip: 0
+  currentSentence: 
 --- !u!4 &1139175042
 Transform:
   m_ObjectHideFlags: 0
@@ -545,10 +551,30 @@ MonoBehaviour:
       \uBCC0\uD558\uC9C0\uB3C4 \uC54A\uC558\uC744\uD14C\uB2C8."
     - "\uB098\uB294 \uC774 \uC138\uACC4\uB97C \uBE5A\uC5B4\uB0B8 \uC2E0\uC774\uB77C\uB294
       \uC874\uC7AC\uAC00 \uC815\uB9D0 \uC2EB\uB2E4."
+    - "\uD558\uC9C0\uB9CC \uC5B4\uC9F8\uC11C\uC778\uC9C0 \uC601\uBB38 \uBAA8\uB97C
+      \uC0AC\uBA85\uAC10\uC774 \uB098\uB97C \uC774 \uACF3\uC5D0 \uBB36\uC5B4\uB454\uB2E4."
+    - "\uB2E4\uC2DC \uD55C\uBC88 \uC0AC\uB78C\uB4E4\uC758 \uC6C3\uC74C\uC744 \uBCF4\uACE0
+      \uC2F6\uC5B4."
+    - "\uC9D1\uC73C\uB85C \uB3CC\uC544\uAC00\uBA74 \uB098\uB97C \uD658\uD558\uAC8C
+      \uBC18\uACA8\uC8FC\uB294 \uAC00\uC871\uB4E4\uC774 \uADF8\uB9AC\uC6CC."
+    - "\uC219\uC81C\uB97C \uC548\uD574\uAC00\uBA74 \uD654\uB97C \uB0B4\uB358 \uC120\uC0DD\uB2D8\uC758
+      \uC794\uC18C\uB9AC\uAC00 \uC78A\uD600\uC9C0\uC9C0\uAC00 \uC54A\uC544."
+    - "\uC9D1 \uBC16\uC5D0\uC11C \uD56D\uC0C1 \uC6C3\uC74C\uC774 \uAC00\uB4DD\uD588\uB358
+      \uCE5C\uAD6C\uB4E4\uC758 \uC18C\uC74C\uC774 \uB108\uBB34\uB098\uB3C4 \uAC04\uC808\uD574."
+    - "\uD558\uC9C0\uB9CC \uCE5C\uAD6C\uB4E4\uC740 \uC774\uC81C \uC5C6\uC5B4."
+    - "\uC120\uC0DD\uB2D8\uC740 \uC2E4\uD5D8\uC2E4\uC758 \uBB34\uC11C\uC6B4 \uC2A4\uCF08\uB808\uD1A4\uC73C\uB85C
+      \uBCC0\uD588\uC5B4."
+    - "\uAC00\uC871\uB4E4\uC740 \uC774\uC81C \uB0B4 \uACC1\uC5D0 \uC5C6\uC5B4."
+    - "\uC544\uBB34\uB3C4 \uC5C6\uC5B4."
+    - "\uB3CC\uC544\uAC08 \uC9D1\uC774 \uC5C6\uC5B4."
+    - "\uC0AC\uB78C\uC744 \uB9C8\uC9C0\uB9C9\uC73C\uB85C \uBCF8 \uC9C0 \uC5BC\uB9C8\uB098
+      \uC9C0\uB0AC\uB294\uC9C0 \uC774\uC81C\uB294 \uC0D0 \uC218\uAC00 \uC5C6\uAC8C
+      \uB418\uBC84\uB838\uB2E4."
+    - "\uADF8 \uB54C\uB85C \uB3CC\uC544\uAC00\uACE0 \uC2F6\uC5B4."
     soulweaponSentences:
     - "\uB10C \uB204\uAD6C\uC9C0?"
     centreText:
-    - "\uB108\uAC00 ...\uD588\uB358  ..\uACC4\uB97C..."
+    - "\uB108\uAC00 ...\uD588\uB358  ..\uB97C..."
     - "...\uC2DC ...\uD574\uC918."
     - "...\uC744(\uB97C) \uB6F0\uC5B4\uB118\uC5B4..."
     - "...\uC0C8\uB85C\uC6B4..."
@@ -565,7 +591,7 @@ GameObject:
   - component: {fileID: 1393598608}
   - component: {fileID: 1393598610}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: DialogueBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -587,10 +613,10 @@ RectTransform:
   m_Father: {fileID: 192610279}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -360}
-  m_SizeDelta: {x: -40, y: -780}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 180}
+  m_SizeDelta: {x: 1880, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1393598608
 MonoBehaviour:
@@ -674,9 +700,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1139175043}
-        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
-        m_MethodName: TriggerDialogue
+      - m_Target: {fileID: 1139175041}
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: DisplayNextSentence
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
