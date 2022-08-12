@@ -19,6 +19,8 @@ public class DialogueManager : MonoBehaviour
     private bool skip = false;
     private string currentSentence;
 
+    public Button boxButton;
+
     private void Awake() {
         sentences = new Queue<string>();
         centreTextQueue = new Queue<string>();
@@ -56,6 +58,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void DisplayNextSentence(){
+
         // Sentence Elements를 다 Out 하고 남은게 없을 때
         if(sentences.Count == 0){
             Debug.Log("없음");
@@ -64,6 +67,8 @@ public class DialogueManager : MonoBehaviour
         }
         // 글자 출력 중 클릭 할 때 스킵 활성화
         if(dialogue_running){
+            boxButton.GetComponent<Button>().interactable = false;
+            StartCoroutine("ButtonDelay");
             skip = true;
             return;
         }
@@ -92,6 +97,14 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.04f);
         }
         dialogue_running = false;
+    }
+
+    IEnumerator ButtonDelay(){
+        Debug.Log(Time.time);
+        yield return new WaitForSeconds(0.8f);
+        Debug.Log(Time.time);
+
+        boxButton.GetComponent<Button>().interactable = true;
     }
 
     // 플레이어가 dialogue 출력 중에 클릭(터치) 했을 때
