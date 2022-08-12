@@ -498,10 +498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 636597026}
   dialogueText: {fileID: 37458204}
-  CentreText: {fileID: 2090931954}
-  dialogue_running: 0
-  skip: 0
-  currentSentence: 
+  centreField: {fileID: 2090931954}
 --- !u!4 &1139175042
 Transform:
   m_ObjectHideFlags: 0
@@ -574,10 +571,8 @@ MonoBehaviour:
     soulweaponSentences:
     - "\uB10C \uB204\uAD6C\uC9C0?"
     centreText:
-    - "\uB108\uAC00 ...\uD588\uB358  ..\uB97C..."
-    - "...\uC2DC ...\uD574\uC918."
-    - "...\uC744(\uB97C) \uB6F0\uC5B4\uB118\uC5B4..."
-    - "...\uC0C8\uB85C\uC6B4..."
+    - "\uB0B4 \uBAA9\uC18C\uB9AC\uAC00 \uB4E4\uB9AC\uB294\uAC00?"
+  DialogueBox: {fileID: 1393598606}
 --- !u!1 &1393598606
 GameObject:
   m_ObjectHideFlags: 0
