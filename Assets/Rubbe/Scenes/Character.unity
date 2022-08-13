@@ -10757,7 +10757,7 @@ MonoBehaviour:
   m_tfArrow: {fileID: 1995487557}
   MainChar: {fileID: 1946201285}
   t_MainCharacter: {x: 0, y: 0}
-  boss_Phase: 2
+  boss_Phase: 1
   Laser: {fileID: 2081275384}
 --- !u!4 &1995487557 stripped
 Transform:

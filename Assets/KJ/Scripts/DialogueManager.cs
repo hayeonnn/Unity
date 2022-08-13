@@ -3,36 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace BaseDialogue {
 public class DialogueManager : MonoBehaviour
 {
+    // public DialogueManager(Queue<string> sentences, Queue<string> centreText){
+    //     sentences = this.sentences;
+    //     centreText = this.centreTextQueue;
+    // }
     public Text nameText;
     public Text dialogueText;
     public Text centreField;
+    public Image showImg;
+    public Sprite nextImg;
     // public Animator animator;
 
-    private Queue<string> sentences;
-    private Queue<string> centreTextQueue;
-    const string TYPESENTENCE = "TypeSentence";
-    const string FADEOUT = "TextFadeOut";
-    const string FADEIN = "TextFadeIn";
-    private bool dialogue_running = false;
-    private bool skip = false;
-    private string currentSentence;
+    [HideInInspector]
+    public Queue<string> sentences;
+    [HideInInspector]
+    public Queue<string> centreTextQueue;
+    [HideInInspector]
+    public const string TYPESENTENCE = "TypeSentence";
+    [HideInInspector]
+    public const string FADEOUT = "TextFadeOut";
+    [HideInInspector]
+    public const string FADEIN = "TextFadeIn";
+    [HideInInspector]
+    public bool dialogue_running = false;
+    [HideInInspector]
+    public bool skip = false;
+    [HideInInspector]
+    public string currentSentence;
 
     public Button boxButton;
 
-    private void Awake() {
+    public virtual void Awake() {
         sentences = new Queue<string>();
         centreTextQueue = new Queue<string>();
+        Color currentColor = centreField.color;
+        // 초기 중앙 문구 안보이게 하기
+        centreField.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0);
     }
 
-    private void Update() {
-        
+    public virtual void Update() {
+        Debug.Log(sentences.Count);
         if(dialogue_running && skip){
             SkipDialogue(currentSentence);
-        }
-        if(skip){
-            Debug.Log("스킵함");
         }
         if(isFadeOutOver){
             isFadeOutOver = false;
@@ -41,8 +56,8 @@ public class DialogueManager : MonoBehaviour
     }
 
     // Dialogue 초기화
-    public void StartDialogue(Dialogue dialogue){
-        Debug.Log("Starting conversation with " + dialogue.name[0]);
+    public virtual void StartDialogue(Dialogue dialogue){
+        Debug.Log("StartDialogue가 호출됨");
 
         // animator.SetBool("IsOpen", true);
 
@@ -57,8 +72,8 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
     }
 
-    public void DisplayNextSentence(){
-
+    public virtual void DisplayNextSentence(){
+        
         // Sentence Elements를 다 Out 하고 남은게 없을 때
         if(sentences.Count == 0){
             Debug.Log("없음");
@@ -84,6 +99,7 @@ public class DialogueManager : MonoBehaviour
     }
     
     
+    
 
     // 문자 출력 코루틴
     // 초기 dialogueText field를 비움
@@ -100,9 +116,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     IEnumerator ButtonDelay(){
-        Debug.Log(Time.time);
         yield return new WaitForSeconds(0.8f);
-        Debug.Log(Time.time);
 
         boxButton.GetComponent<Button>().interactable = true;
     }
@@ -118,39 +132,41 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void EndDialogue(){
-        // animator.SetBool("IsOpen", false);
+        // animator.SetBool("IsClose", false);
     }
     
-    public void StartCentreText(Dialogue dialogue){
+    public virtual void StartCentreText(Dialogue dialogue){
         centreTextQueue.Clear(); // 한번 비우기
-        Color currentColor = centreField.color;
-        // 초기 중앙 문구 안보이게 하기
-        centreField.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0);
         // 중앙 문구 Queue에 dialog.centreText 다 넣기
         foreach (string centreText in dialogue.centreText){
             centreTextQueue.Enqueue(centreText);
         }
-        DisplayNextCentreText();
+        if(DialogueTrigger.isPrologue){
+            DisplayNextCentreText();
+        }
+        else {
+            return;
+        }
     }
 
-    public void DisplayNextCentreText(){
+    public virtual void DisplayNextCentreText(){
         if(centreTextQueue.Count == 0){
             Debug.Log("남아있는게 없다");
             DialogueTrigger.isOver = true;
-            Debug.Log(DialogueTrigger.isOver);
+            // Debug.Log(DialogueTrigger.isOver);
             return;
         }
         string centreText = centreTextQueue.Dequeue();
         centreField.text = centreText;
         
         StartCoroutine(FADEIN);
-
-        
     }
 
 
-    private float fadeTime = 2.0f;
-    private bool isFadeOutOver;
+    [HideInInspector]
+    public float fadeTime = 2.0f;
+    [HideInInspector]
+    public bool isFadeOutOver;
     // 사라짐
     IEnumerator TextFadeOut(){
         centreField.color = new Color(centreField.color.r, centreField.color.g, centreField.color.b, 1);
@@ -174,5 +190,7 @@ public class DialogueManager : MonoBehaviour
         }
         StartCoroutine(FADEOUT);
     }
+
+}
 
 }
