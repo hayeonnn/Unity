@@ -29,7 +29,7 @@ public class GroundMonsterAction : MonoBehaviour {
         }
         // Platform check
         Vector2 frontVector = new Vector2(rigid.position.x + nextMove * 0.3f, + rigid.position.y);
-        RaycastHit2D rayHit = Physics2D.Raycast(frontVector, Vector3.down, 1, LayerMask.GetMask("Tilemap"));
+        RaycastHit2D rayHit = Physics2D.Raycast(frontVector, Vector3.down, 1, LayerMask.GetMask("Platform"));
         Debug.DrawRay(frontVector, Vector3.down, new Color(0, 1, 0));
         if(rayHit.collider == null){
             Turn();
@@ -53,7 +53,7 @@ public class GroundMonsterAction : MonoBehaviour {
         nextMove = nextMove * -1;
         spriteRenderer.flipX = nextMove == 1;
 
-        CancelInvoke();
+        CancelInvoke("Think");
         Invoke("Think", 2f);
     }
 }
