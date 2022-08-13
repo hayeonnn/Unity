@@ -13,6 +13,8 @@ public class BossController : MonoBehaviour
 
     public int boss_Phase = 1;
 
+    public GameObject Laser;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,10 +38,10 @@ public class BossController : MonoBehaviour
             if (temp == 1||temp==2)
             {
                 Invoke("TryFire", 0.5f);
-                Invoke("TryFire", 1f);
-                Invoke("TryFire", 1.5f);
-                Invoke("TryFire", 2f);
-                Invoke("TryFire", 2.5f);
+                Invoke("TryFire", 1.2f);
+                Invoke("TryFire", 2.0f);
+                Invoke("TryFire", 2.8f);
+                Invoke("TryFire", 3.5f);
             }
             else if (temp == 3)
             {
@@ -48,7 +50,15 @@ public class BossController : MonoBehaviour
         }
         else if (boss_Phase == 2)
         {
-            Invoke("JumpPhase2", 0.5f);
+            int temp = Random.Range(1, 3);
+            if (temp == 1)
+            {
+                Invoke("JumpPhase2", 0.5f);
+            }
+            else if (temp == 2)
+            {
+                Invoke("LaserOn", 0.5f);
+            }
         }
     }
 
@@ -56,7 +66,29 @@ public class BossController : MonoBehaviour
     {
         float distance = Vector2.Distance(t_MainCharacter, transform.position);
         GameObject t_arrow = Instantiate(m_goPrefab, m_tfArrow.position, m_tfArrow.rotation);
-        t_arrow.GetComponent<Rigidbody2D>().velocity = (t_arrow.transform.right * 9f * distance / 8) + (t_arrow.transform.up * -2f * distance / 5);
+        //t_arrow.GetComponent<Rigidbody2D>().velocity = (t_arrow.transform.right * 9f * distance / 8) + (t_arrow.transform.up * -2f * distance / 5);
+        t_arrow.GetComponent<Rigidbody2D>().velocity = calcBallisticVelocityVector(m_tfArrow.position, t_MainCharacter,30);
+    }
+
+    private Vector2 calcBallisticVelocityVector(Vector2 initialPos, Vector2 finalPos, float angle)
+    {
+        var toPos = initialPos - finalPos;
+
+        var h = toPos.y;
+
+        toPos.y = 0;
+        var r = toPos.magnitude;
+
+        var g = -Physics.gravity.y;
+
+        var a = Mathf.Deg2Rad * angle;
+
+        var vI = Mathf.Sqrt(((Mathf.Pow(r, 2f) * g)) / (r * Mathf.Sin(2f * a) + 2f * h * Mathf.Pow(Mathf.Cos(a), 2f)));
+
+        Vector2 velocity = (finalPos- initialPos).normalized * Mathf.Cos(a);
+        velocity.y = Mathf.Sin(a);
+
+        return velocity * vI;
     }
 
     void JumpPhase1()
@@ -98,6 +130,16 @@ public class BossController : MonoBehaviour
         transform.GetComponentInParent<Rigidbody2D>().velocity = Vector2.zero;
         Vector3 temp=new Vector3(99.6999969f, -23.0048084f, 0f);
         transform.parent.transform.position = temp;
+    }
+
+    void LaserOn()
+    {
+        Laser.SetActive(true);
+        Invoke("LaserOff", 3f);
+    }
+    void LaserOff()
+    {
+        Laser.SetActive(false);
     }
 
     // Update is called once per frame
