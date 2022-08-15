@@ -14,7 +14,7 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueText;
     public Text centreField;
     public Image showImg;
-    public Sprite nextImg;
+    public Image nextImg;
     // public Animator animator;
 
     [HideInInspector]
@@ -178,7 +178,7 @@ public class DialogueManager : MonoBehaviour
         isFadeOutOver = true;
 
         if(isFadeOutOver){
-            Debug.Log("문장 하나 끝남");
+            Debug.Log("중앙 문구 Fade I/O 끝");
         }
     }
     // 나타남

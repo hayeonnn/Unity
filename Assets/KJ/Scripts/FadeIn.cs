@@ -10,6 +10,8 @@ public class FadeIn : MonoBehaviour
     private float targetAlpha;
     public Image fadeImg;
     public float fadeRate;
+    public bool isInGame;
+    public bool isFadeInOver = false;
 
     IEnumerator FadeInCoroutine(){
         isPlaying = true;
@@ -21,8 +23,10 @@ public class FadeIn : MonoBehaviour
 
         while(Mathf.Abs(fadeColor.a - targetAlpha) > 0.0001f){
             if(fadeImg.color.a >= 0.96f){
+                Debug.Log("Fade in is over!");
                 isPlaying = false;
-                break;
+                isFadeInOver = true;
+                StopCoroutine("FadeInCoroutine");
             }
             // Debug.Log(fadeImg.color.a);
             fadeColor.a = Mathf.Lerp(fadeColor.a, targetAlpha, fadeRate * Time.deltaTime);
@@ -37,6 +41,10 @@ public class FadeIn : MonoBehaviour
         fadeImg.gameObject.SetActive(true);
         
 
+        StartCoroutine("FadeInCoroutine");
+    }
+
+    public void StartFadeIn(){
         StartCoroutine("FadeInCoroutine");
     }
 
