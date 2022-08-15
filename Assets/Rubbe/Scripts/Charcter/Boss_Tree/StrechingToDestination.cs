@@ -29,4 +29,5 @@ public class StrechingToDestination : MonoBehaviour
 
         EndObject.transform.position = Vector3.MoveTowards(EndObject.transform.position, DestinationPoint.transform.position, 0.3f);
     }
+
 }
