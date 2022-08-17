@@ -13,6 +13,8 @@ public class Stage_1_1_Dialogue : DialogueManager
     private Texture2D escapeImg;
     private Texture2D theStone;
     private Texture2D trio;
+    public GameObject[] inGameObjects;
+    public GameObject mainCamera;
 
     Sprite starRainSprite;
     Sprite ruinBuildingSprite;
@@ -20,6 +22,8 @@ public class Stage_1_1_Dialogue : DialogueManager
     Sprite theStoneSprite;
     Sprite trioSprite;
     private bool endPrologue;
+    
+    private Vector3 tmpCentrePosition;
     public override void Awake()
     {
         starRainImg = Resources.Load<Texture2D>("Sprites/star_rain");
@@ -42,14 +46,19 @@ public class Stage_1_1_Dialogue : DialogueManager
         fadeIn.fadeImg = showImg;
         fadeOut.fadeImg = showImg;
         base.Awake();
+
+        tmpCentrePosition = centreField.transform.position;
+
+        foreach (GameObject objects in inGameObjects){
+            objects.gameObject.SetActive(false);
+        }
     }
 
     public override void Update(){
-
         if(dialogue_running && skip){
             SkipDialogue(currentSentence);
         }
-        if(isFadeOutOver){
+        if(isFadeOutOver && !endPrologue){
             boxButton.gameObject.SetActive(true);
             isFadeOutOver = false;
         }
@@ -57,7 +66,17 @@ public class Stage_1_1_Dialogue : DialogueManager
             Debug.Log("프롤로그 끝");
             showImg.gameObject.SetActive(false);
             nextImg.gameObject.SetActive(false);
+            boxButton.gameObject.SetActive(false);
+            fadeIn.isFadeInOver = false;
+            
+            Debug.Log(tmpCentrePosition);
+            tmpCentrePosition.y += 200;
+
+            centreField.transform.position = tmpCentrePosition;
+
+            this.DisplayNextCentreText();
         }
+        
     }
 
 
@@ -88,6 +107,13 @@ public class Stage_1_1_Dialogue : DialogueManager
 
             EndDialogue();
             endPrologue = true;
+            
+            foreach (GameObject objects in inGameObjects){
+                objects.gameObject.SetActive(true);
+            }
+
+            mainCamera.transform.SetParent(inGameObjects[0].transform);
+            
             return;
         }
         
@@ -103,6 +129,7 @@ public class Stage_1_1_Dialogue : DialogueManager
             continueText();
         }
         
+        // 해당 대사 때 페이드 인아웃 버튼 딜레이 넣어서 해결
         if(sentences.Count == 9){
             fadeOut.StartFadeOut();
             
