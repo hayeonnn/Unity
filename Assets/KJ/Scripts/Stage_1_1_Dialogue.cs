@@ -44,8 +44,8 @@ public class Stage_1_1_Dialogue : DialogueManager
         base.Awake();
     }
 
-    public override void Update(){  
-        Debug.Log(sentences.Count);
+    public override void Update(){
+
         if(dialogue_running && skip){
             SkipDialogue(currentSentence);
         }
@@ -53,12 +53,11 @@ public class Stage_1_1_Dialogue : DialogueManager
             boxButton.gameObject.SetActive(true);
             isFadeOutOver = false;
         }
-        // if(fadeIn.isFadeInOver && endPrologue){
-        //     showImg.gameObject.SetActive(false);
-        //     nextImg.gameObject.SetActive(false);
-        //     fadeIn.isFadeInOver = false;
-        // }
-
+        if(fadeIn.isFadeInOver && sentences.Count == 0 && endPrologue){
+            Debug.Log("프롤로그 끝");
+            showImg.gameObject.SetActive(false);
+            nextImg.gameObject.SetActive(false);
+        }
     }
 
 
@@ -88,11 +87,10 @@ public class Stage_1_1_Dialogue : DialogueManager
             boxButton.gameObject.SetActive(false);
 
             EndDialogue();
-            if(fadeIn.isFadeInOver){
-                endPrologue = true; 
-            }
+            endPrologue = true;
             return;
         }
+        
         // 글자 출력 중 클릭 할 때 스킵 활성화
         if(dialogue_running){
             boxButton.GetComponent<Button>().interactable = false;
@@ -104,8 +102,12 @@ public class Stage_1_1_Dialogue : DialogueManager
         else if(!skip && !dialogue_running){
             continueText();
         }
+        
         if(sentences.Count == 9){
             fadeOut.StartFadeOut();
+            
+            boxButton.GetComponent<Button>().interactable = false;
+            StartCoroutine("ButtonDelay");
         }
 
         if(sentences.Count == 8){
@@ -118,6 +120,7 @@ public class Stage_1_1_Dialogue : DialogueManager
             this.DisplayNextCentreText();
         }
         if(sentences.Count == 7){
+            fadeIn.isFadeInOver = false;
             fadeOut.StartFadeOut();
             nextImg.sprite = ruinBuildingSprite;
         }

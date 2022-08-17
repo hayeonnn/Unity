@@ -49,11 +49,4 @@ public class Information : MonoBehaviour {
 
 
     }
-
-    public void onClickPrevButton(){
-        if(FadeIn.isPlaying == false){
-            Debug.Log("isPlaying false");
-            SceneManager.LoadScene(0);
-        }
-    }
 }

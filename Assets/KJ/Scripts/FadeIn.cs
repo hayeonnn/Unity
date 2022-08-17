@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FadeIn : MonoBehaviour
 {
 
-    public static bool isPlaying;
+    public bool isPlaying;
     private float targetAlpha;
     public Image fadeImg;
     public float fadeRate;
@@ -28,7 +28,7 @@ public class FadeIn : MonoBehaviour
                 isFadeInOver = true;
                 StopCoroutine("FadeInCoroutine");
             }
-            // Debug.Log(fadeImg.color.a);
+            Debug.Log(fadeImg.color.a);
             fadeColor.a = Mathf.Lerp(fadeColor.a, targetAlpha, fadeRate * Time.deltaTime);
             fadeImg.color = fadeColor;
             yield return null;

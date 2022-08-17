@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class FadeOut : MonoBehaviour
 {
 
-    private bool isPlaying;
+    public bool isPlaying;
     private float targetAlpha;
     public Image fadeImg;
     public float fadeRate;
     public bool isInGame;
+    public bool isFadeOutOver;
 
     public IEnumerator FadeOutCoroutine(){
         isPlaying = true;
@@ -24,8 +25,12 @@ public class FadeOut : MonoBehaviour
 
             if(fadeImg.color.a < 0.07f){
                 fadeImg.gameObject.SetActive(false);
+                isPlaying = false;
+                isFadeOutOver = true;
+                Debug.Log("Fade Out is over");
                 StopCoroutine("FadeOutCoroutine");
             }
+            
             // Debug.Log(fadeImg.color.a);
             fadeColor.a = Mathf.Lerp(fadeColor.a, targetAlpha, fadeRate * Time.deltaTime);
             fadeImg.color = fadeColor;
