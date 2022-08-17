@@ -19,6 +19,7 @@ public class BossController_Tree : MonoBehaviour
     public GameObject Boss_Eye_Color;
 
     public GameObject Buttom_Trunk;
+    public GameObject warning;
 
     // Start is called before the first frame update
     void Start()
@@ -47,12 +48,13 @@ public class BossController_Tree : MonoBehaviour
             int temp = Random.Range(1, 3);
             if (temp == 1)
             {
+                /*Invoke("Buttom_Trunk_Attack", 1f);
                 Invoke("Buttom_Trunk_Attack", 1f);
                 Invoke("Buttom_Trunk_Attack", 1f);
                 Invoke("Buttom_Trunk_Attack", 1f);
                 Invoke("Buttom_Trunk_Attack", 1f);
-                Invoke("Buttom_Trunk_Attack", 1f);
-                Invoke("Buttom_Trunk_Attack", 1f);
+                Invoke("Buttom_Trunk_Attack", 1f);*/
+                StartCoroutine(Phase2_Buttom_Trunk_Attack());
             }
             else if (temp == 2)
             {
@@ -74,7 +76,7 @@ public class BossController_Tree : MonoBehaviour
     void Trunk_Attack()
     {
         //Trunk.SetActive(true);
-        GameObject temp=Instantiate(Trunk, Trunk.transform.position, Trunk.transform.rotation);
+        GameObject temp = Instantiate(Trunk, Trunk.transform.position, Trunk.transform.rotation);
         Destroy(temp, 1.2f);
         Invoke("Boss_Eye_Color_Reset", 1.2f);
     }
@@ -90,19 +92,46 @@ public class BossController_Tree : MonoBehaviour
         Boss_Eye_Color.SetActive(false);
     }
 
-    void Buttom_Trunk_Attack()
+    void Buttom_Trunk_Attack(float startX)
     {
-        float start_X = Random.Range(43.5f, 100.5f);
+        /*float start_X = Random.Range(43.5f, 100.5f);
         Vector3 startPosition = Vector3.zero;
         startPosition.x = start_X;
+        startPosition.y = Buttom_Trunk.transform.position.y;*/
+
+        Vector3 startPosition = Vector3.zero;
+        startPosition.x = startX;
         startPosition.y = Buttom_Trunk.transform.position.y;
         GameObject temp = Instantiate(Buttom_Trunk, startPosition, Buttom_Trunk.transform.rotation);
         Destroy(temp, 2f);
     }
 
+    float Warning_Buttom_Trunk_Attack()
+    {
+        Vector3 startPosition = Vector3.zero;
+        startPosition.x = MainChar.transform.position.x;
+        startPosition.y = warning.transform.position.y;
+        GameObject temp = Instantiate(warning, startPosition, warning.transform.rotation);
+        Destroy(temp, 1.2f);
+
+        return startPosition.x;
+    }
+    IEnumerator Phase2_Buttom_Trunk_Attack()
+    {
+        float PositionX = Warning_Buttom_Trunk_Attack();
+        yield return new WaitForSeconds(1.2f);
+        Buttom_Trunk_Attack(PositionX);
+        float PositionX1 = Warning_Buttom_Trunk_Attack();
+        yield return new WaitForSeconds(1.2f);
+        Buttom_Trunk_Attack(PositionX1);
+        float PositionX2 = Warning_Buttom_Trunk_Attack();
+        yield return new WaitForSeconds(1.2f);
+        Buttom_Trunk_Attack(PositionX2);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

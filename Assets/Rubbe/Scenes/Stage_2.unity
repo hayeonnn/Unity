@@ -253,7 +253,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -895124683
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 58cbeca1e0df5414f98b7045d6135b13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -10603,11 +10603,12 @@ MonoBehaviour:
   MainChar: {fileID: 172443133}
   boss_Phase: 2
   leaves: {fileID: 8151996707183394209, guid: fd042f664201ba945b4e53ecb87173c2, type: 3}
-  Trunk: {fileID: 5494315968179993881, guid: b19b6f5d1bbfc674cab9832396aad5ef, type: 3}
+  Trunk: {fileID: 855922443148584956, guid: b19b6f5d1bbfc674cab9832396aad5ef, type: 3}
   Monster: {fileID: 513456506}
   SpawnPos: {fileID: 793875891}
   Boss_Eye_Color: {fileID: 395228278}
   Buttom_Trunk: {fileID: 7912860164934846732, guid: 2ba3a4310bd965c4aa7014a73dc06309, type: 3}
+  warning: {fileID: 6588065284492618111, guid: 9d6ba2f66a6e96e4e9557930be58c8f7, type: 3}
 --- !u!1 &978499434
 GameObject:
   m_ObjectHideFlags: 0

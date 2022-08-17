@@ -35,7 +35,7 @@ public class StrechingAndReturn : MonoBehaviour
             EndObject.transform.position = Vector3.MoveTowards(EndObject.transform.position, DestinationPoint.transform.position, 0.3f);
             if (EndObject.transform.position == DestinationPoint.transform.position)
             {
-                Invoke("ReverseDirection", 1f);
+                Invoke("ReverseDirection", 0.3f);
             }
         }
         else if (direction == 2)
@@ -49,7 +49,7 @@ public class StrechingAndReturn : MonoBehaviour
             Vector3 rotationDirection = (EndObject.transform.position - StartObject.transform.position);
             transform.up = rotationDirection;
 
-            EndObject.transform.position = Vector3.MoveTowards(EndObject.transform.position, StartObject.transform.position, 0.1f);
+            EndObject.transform.position = Vector3.MoveTowards(EndObject.transform.position, StartObject.transform.position, 0.2f);
         }
     }
 

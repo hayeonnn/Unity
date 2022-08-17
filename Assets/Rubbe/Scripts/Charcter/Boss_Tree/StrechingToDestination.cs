@@ -9,10 +9,14 @@ public class StrechingToDestination : MonoBehaviour
     public GameObject EndObject;
     public GameObject DestinationPoint;
 
+    GameObject MainChr;
+
     public Vector3 InitialScale;
     void Start()
     {
         InitialScale = transform.localScale;
+        MainChr = GameObject.Find("Character");
+        DestinationPoint.transform.position = MainChr.transform.position;
     }
 
     // Update is called once per frame
