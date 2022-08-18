@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/KJ/Scenes/MainMenu.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 8c0acfc0383b56a4ca4f422d8e368f85
   - enabled: 1
-    path: Assets/KJ/Scenes/SettingScene.unity
+    path: Assets/Scenes/SettingScene.unity
     guid: 9db8cc5b8162db64fbc30eb8b2a5dcd4
   - enabled: 1
-    path: Assets/KJ/Scenes/UserInformationScene.unity
+    path: Assets/Scenes/UserInformationScene.unity
     guid: 394dc22b0f7083d42ad81dfc1fd93403
+  - enabled: 1
+    path: Assets/Scenes/Custom.unity
+    guid: bdfb5bad6db1b1a4ebd7cfb41edfdee7
+  - enabled: 1
+    path: Assets/Scenes/KJW/StoryMap.unity
+    guid: 8063f7d88f9086f49956a58cd1e3c123
   m_configObjects: {}
