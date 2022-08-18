@@ -10601,7 +10601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainChar: {fileID: 172443133}
-  boss_Phase: 2
+  boss_Phase: 1
   leaves: {fileID: 8151996707183394209, guid: fd042f664201ba945b4e53ecb87173c2, type: 3}
   Trunk: {fileID: 855922443148584956, guid: b19b6f5d1bbfc674cab9832396aad5ef, type: 3}
   Monster: {fileID: 513456506}
