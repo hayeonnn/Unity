@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using BaseDialogue;
 public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue prologueScript;
     public GameObject DialogueBox;
     public static bool isOver;
+    public static bool isPrologue;
 
     private void Start() {
         DialogueBox.SetActive(false);
-        InitCentreText();
+        if(isPrologue){
+            InitCentreText();
+        }
+        else if(!isPrologue) {
+            InitCentreText();
+            isOver = true;
+        }
         
     }
 
