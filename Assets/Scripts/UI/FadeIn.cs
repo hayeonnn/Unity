@@ -28,7 +28,7 @@ public class FadeIn : MonoBehaviour
                 isFadeInOver = true;
                 StopCoroutine("FadeInCoroutine");
             }
-            Debug.Log(fadeImg.color.a);
+            // Debug.Log(fadeImg.color.a);
             fadeColor.a = Mathf.Lerp(fadeColor.a, targetAlpha, fadeRate * Time.deltaTime);
             fadeImg.color = fadeColor;
             yield return null;
