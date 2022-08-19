@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TutorialTrigger : MonoBehaviour
 {
-    public GameObject[] triggers;
     public Animator tutoAnim_1;
     public Animator tutoAnim_2;
     public Stack<Animator> tutorialOrder;
-    public Animator currentAnimator;
+    public Animator prevAnimator;
+    public bool isDisplay;
+    private int coCount = 0;
 
     private void Awake() {
         tutorialOrder = new Stack<Animator>();
@@ -20,24 +20,29 @@ public class TutorialTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Player"){
-            Debug.Log("트리거 발동");
-            currentAnimator = tutorialOrder.Pop();
-
-            currentAnimator.SetBool("isOpen", true);
-
-            StartCoroutine("WaitTip");
-            
+            if(tutorialOrder.Count == 0){
+                Debug.Log("Stack empty");
+                return;
+            }
+            Debug.Log("Triggered");
+            StartCoroutine(WaitTip());            
 
         }
         
     }
     
     IEnumerator WaitTip(){
+        Animator currentAnimator = tutorialOrder.Pop();
 
-        yield return new WaitForSeconds(2f);
+        currentAnimator.SetBool("isOpen", true);
+        coCount++;
+        Debug.Log("코루틴 호출된 수" + coCount);
+        isDisplay = true;
+        yield return new WaitForSeconds(3f);
 
+        isDisplay = false;
         currentAnimator.SetBool("isOpen", false);
 
-        StopCoroutine("WaitTip");
     }
+
 }

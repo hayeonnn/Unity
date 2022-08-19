@@ -31,9 +31,14 @@ public class DialogueTrigger : MonoBehaviour
 
     public void TriggerDialogue(){
         FindObjectOfType<DialogueManager>().StartDialogue(prologueScript);
+        FindObjectOfType<DialogueManager>().InitConversationQueue(prologueScript);
     }
 
     public void InitCentreText(){
         FindObjectOfType<DialogueManager>().StartCentreText(prologueScript);
+    }
+
+    public Dialogue GetDialogue(){
+        return prologueScript;
     }
 }

@@ -15,12 +15,15 @@ public class DialogueManager : MonoBehaviour
     public Text centreField;
     public Image showImg;
     public Image nextImg;
+    public Image playerPortait;
     // public Animator animator;
 
     [HideInInspector]
     public Queue<string> sentences;
     [HideInInspector]
     public Queue<string> centreTextQueue;
+    [HideInInspector]
+    public Queue<string> conversationQueue;
     [HideInInspector]
     public const string TYPESENTENCE = "TypeSentence";
     [HideInInspector]
@@ -39,9 +42,11 @@ public class DialogueManager : MonoBehaviour
     public virtual void Awake() {
         sentences = new Queue<string>();
         centreTextQueue = new Queue<string>();
+        conversationQueue = new Queue<string>();
         Color currentColor = centreField.color;
         // 초기 중앙 문구 안보이게 하기
         centreField.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0);
+        
     }
 
     public virtual void Update() {
@@ -71,6 +76,20 @@ public class DialogueManager : MonoBehaviour
         // DialogueTrigger.Start()로 자동 실행되게 하기
         DisplayNextSentence();
     }
+
+    public virtual void InitConversationQueue(Dialogue dialogue){
+        conversationQueue.Clear();
+
+        foreach (string sentence in dialogue.conversationSentences){
+            conversationQueue.Enqueue(sentence);
+        }
+        
+    }
+    public Text playerName;
+    public void SetPlayerName(Dialogue dialogue){
+        playerName.text = dialogue.name[1];
+    }
+
 
     public virtual void DisplayNextSentence(){
         
