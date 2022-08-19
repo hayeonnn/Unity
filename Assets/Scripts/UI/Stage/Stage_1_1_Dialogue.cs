@@ -13,6 +13,7 @@ public class Stage_1_1_Dialogue : DialogueManager
     private Texture2D escapeImg;
     private Texture2D theStone;
     private Texture2D trio;
+    private Texture2D clearImg;
     public GameObject[] inGameObjects;
     public GameObject mainCamera;
     public GameObject finishTrigger;
@@ -22,7 +23,9 @@ public class Stage_1_1_Dialogue : DialogueManager
     Sprite escapeSprite;
     Sprite theStoneSprite;
     Sprite trioSprite;
+    Sprite clearSprite;
     private bool endPrologue;
+    private bool lastConversation;
     // DialogueBox onClick() parameter 
     private UnityEngine.Events.UnityAction buttonCallback;
     private bool isChangedQueue = false;
@@ -35,15 +38,17 @@ public class Stage_1_1_Dialogue : DialogueManager
         escapeImg = Resources.Load<Texture2D>("Sprites/escape");
         theStone = Resources.Load<Texture2D>("Sprites/the_stone");
         trio = Resources.Load<Texture2D>("Sprites/trio");
-
+        clearImg = Resources.Load<Texture2D>("Sprites/clear_scene");
 
         starRainSprite = Sprite.Create(starRainImg, new Rect(0, 0, starRainImg.width, starRainImg.height), Vector2.zero);
         ruinBuildingSprite = Sprite.Create(ruinBuildingImg, new Rect(0, 0, ruinBuildingImg.width, ruinBuildingImg.height), Vector2.zero);
         escapeSprite = Sprite.Create(escapeImg, new Rect(0, 0, escapeImg.width, escapeImg.height), Vector2.zero);
         theStoneSprite = Sprite.Create(theStone, new Rect(0, 0,theStone.width, theStone.height), Vector2.zero);
         trioSprite = Sprite.Create(trio, new Rect(0, 0, trio.width, trio.height), Vector2.zero);
+        clearSprite = Sprite.Create(clearImg, new Rect(0, 0, clearImg.width, clearImg.height), Vector2.zero);
         
         endPrologue = false;
+        lastConversation = false;
 
         fadeIn = GetComponent<FadeIn>();
         fadeOut = GetComponent<FadeOut>();
@@ -66,14 +71,14 @@ public class Stage_1_1_Dialogue : DialogueManager
             boxButton.gameObject.SetActive(true);
             isFadeOutOver = false;
         }
-        if(fadeIn.isFadeInOver && sentences.Count == 0 && endPrologue){
+        if(fadeIn.isFadeInOver && sentences.Count == 0 && endPrologue && !lastConversation){
             if(!isChangedQueue){
                 Debug.Log("프롤로그 끝");
                 showImg.gameObject.SetActive(false);
                 nextImg.gameObject.SetActive(false);
                 boxButton.gameObject.SetActive(false);
                 fadeIn.isFadeInOver = false;
-            
+                
                 Debug.Log(tmpCentrePosition);
                 tmpCentrePosition.y += 200;
 
@@ -171,6 +176,7 @@ public class Stage_1_1_Dialogue : DialogueManager
 
 
     private Dialogue dialogue;
+    public bool isConversation = false;
     public void SetDialogue(Dialogue dialogue){
         this.dialogue = dialogue;
     }
@@ -180,19 +186,31 @@ public class Stage_1_1_Dialogue : DialogueManager
             ChangeDialogueQueue();
             showImg.gameObject.SetActive(true);
             boxButton.gameObject.SetActive(true);
+
         }
 
         if(conversationQueue.Count == 0){
+            boxButton.GetComponent<Button>().interactable = false;
+            StartCoroutine("ButtonDelay");
+
             Debug.Log("대화 끝");
-            showImg.gameObject.SetActive(false);
+            showImg.gameObject.SetActive(true);
+            nextImg.gameObject.SetActive(true);
+            playerPortait.gameObject.SetActive(false);
+            
+            nextImg.sprite = clearSprite;
             return;
         }
 
         else {
+            if(!isConversation){
+                fadeIn.StartHalfFadeIn();
+                lastConversation = true;
+            }
             Debug.Log("StartConversation 시작");
 
-            fadeOut.StartHalfFadeOut();
         
+            playerPortait.gameObject.SetActive(true);
             if(dialogue_running){
                 boxButton.GetComponent<Button>().interactable = false;
                 StartCoroutine("ButtonDelay");

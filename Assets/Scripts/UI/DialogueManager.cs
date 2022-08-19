@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     public Text centreField;
     public Image showImg;
     public Image nextImg;
+    public Image playerPortait;
     // public Animator animator;
 
     [HideInInspector]
