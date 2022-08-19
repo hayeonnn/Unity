@@ -12,7 +12,7 @@ public class Dialogue
     public string[] playerSentences;
     
     [TextArea(3, 10)]
-    public string[] soulweaponSentences;
+    public string[] conversationSentences;
 
     [TextArea(1, 5)]
     public string[] centreText;
