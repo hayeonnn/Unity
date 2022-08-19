@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Custom.unity
     guid: bdfb5bad6db1b1a4ebd7cfb41edfdee7
   - enabled: 1
-    path: Assets/Scenes/KJW/StoryMap.unity
-    guid: 8063f7d88f9086f49956a58cd1e3c123
+    path: Assets/Scenes/StoryMap.unity
+    guid: 56cfdcb3a5deb1f4082a9b598809e040
+  - enabled: 1
+    path: Assets/Scenes/Stage/Stage_1_1.unity
+    guid: 85e9185788effac4d88c5a0d5c4bbb94
   m_configObjects: {}
