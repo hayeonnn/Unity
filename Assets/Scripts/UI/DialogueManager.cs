@@ -76,12 +76,17 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
     }
 
-    public void InitConversationQueue(Dialogue dialogue, int i){
+    public virtual void InitConversationQueue(Dialogue dialogue){
         conversationQueue.Clear();
 
         foreach (string sentence in dialogue.conversationSentences){
             conversationQueue.Enqueue(sentence);
         }
+        
+    }
+    public Text playerName;
+    public void SetPlayerName(Dialogue dialogue){
+        playerName.text = dialogue.name[1];
     }
 
 

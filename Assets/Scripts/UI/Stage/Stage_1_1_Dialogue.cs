@@ -169,15 +169,22 @@ public class Stage_1_1_Dialogue : DialogueManager
         }
     }
 
+
+    private Dialogue dialogue;
+    public void SetDialogue(Dialogue dialogue){
+        this.dialogue = dialogue;
+    }
     public void StartConversation(){
+        nameText.text = dialogue.name[1];
         if(!isChangedQueue){
             ChangeDialogueQueue();
             showImg.gameObject.SetActive(true);
             boxButton.gameObject.SetActive(true);
         }
+
         if(conversationQueue.Count == 0){
             Debug.Log("대화 끝");
-            fadeOut.StartFadeOut();
+            showImg.gameObject.SetActive(false);
             return;
         }
 
@@ -224,7 +231,7 @@ public class Stage_1_1_Dialogue : DialogueManager
             boxButton.onClick.RemoveListener(buttonCallback);
             isChangedQueue = true;
         }
-        Debug.Log("갈아치움");
+        // Debug.Log("갈아치움");
 
         buttonCallback = () => this.StartConversation();
         

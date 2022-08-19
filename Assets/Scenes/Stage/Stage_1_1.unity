@@ -405,6 +405,7 @@ MonoBehaviour:
   skip: 0
   currentSentence: 
   boxButton: {fileID: 1677490964}
+  playerName: {fileID: 0}
   fadeTime: 2
   isFadeOutOver: 0
   fadeIn: {fileID: 0}
@@ -1163,6 +1164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0de10e2bf37feb0469a145ef2660ae4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 55067712}
   currentManager: {fileID: 55067714}
 --- !u!1 &1106252456
 GameObject:
@@ -1697,7 +1699,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Centre Text
+  m_Text: Stage 1-1
 --- !u!222 &1636114102
 CanvasRenderer:
   m_ObjectHideFlags: 0
