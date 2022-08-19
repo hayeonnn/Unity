@@ -15,6 +15,7 @@ public class Stage_1_1_Dialogue : DialogueManager
     private Texture2D trio;
     public GameObject[] inGameObjects;
     public GameObject mainCamera;
+    public GameObject finishTrigger;
 
     Sprite starRainSprite;
     Sprite ruinBuildingSprite;
@@ -22,6 +23,9 @@ public class Stage_1_1_Dialogue : DialogueManager
     Sprite theStoneSprite;
     Sprite trioSprite;
     private bool endPrologue;
+    // DialogueBox onClick() parameter 
+    private UnityEngine.Events.UnityAction buttonCallback;
+    private bool isChangedQueue = false;
     
     private Vector3 tmpCentrePosition;
     public override void Awake()
@@ -63,18 +67,21 @@ public class Stage_1_1_Dialogue : DialogueManager
             isFadeOutOver = false;
         }
         if(fadeIn.isFadeInOver && sentences.Count == 0 && endPrologue){
-            Debug.Log("프롤로그 끝");
-            showImg.gameObject.SetActive(false);
-            nextImg.gameObject.SetActive(false);
-            boxButton.gameObject.SetActive(false);
-            fadeIn.isFadeInOver = false;
+            if(!isChangedQueue){
+                Debug.Log("프롤로그 끝");
+                showImg.gameObject.SetActive(false);
+                nextImg.gameObject.SetActive(false);
+                boxButton.gameObject.SetActive(false);
+                fadeIn.isFadeInOver = false;
             
-            Debug.Log(tmpCentrePosition);
-            tmpCentrePosition.y += 200;
+                Debug.Log(tmpCentrePosition);
+                tmpCentrePosition.y += 200;
 
-            centreField.transform.position = tmpCentrePosition;
+                centreField.transform.position = tmpCentrePosition;
 
-            this.DisplayNextCentreText();
+                this.DisplayNextCentreText();
+
+            }
         }
         
     }
@@ -162,6 +169,37 @@ public class Stage_1_1_Dialogue : DialogueManager
         }
     }
 
+    public void StartConversation(){
+        if(!isChangedQueue){
+            ChangeDialogueQueue();
+            showImg.gameObject.SetActive(true);
+            boxButton.gameObject.SetActive(true);
+        }
+        if(conversationQueue.Count == 0){
+            Debug.Log("대화 끝");
+            fadeOut.StartFadeOut();
+            return;
+        }
+
+        else {
+            Debug.Log("StartConversation 시작");
+
+            fadeOut.StartHalfFadeOut();
+        
+            if(dialogue_running){
+                boxButton.GetComponent<Button>().interactable = false;
+                StartCoroutine("ButtonDelay");
+                skip = true;
+                return;
+            }
+
+            else if(!skip && !dialogue_running){
+                continueConversation();
+            }
+
+        }
+    }
+
 
     public void continueText(){
             string sentence = sentences.Dequeue();
@@ -171,4 +209,26 @@ public class Stage_1_1_Dialogue : DialogueManager
             StartCoroutine(TYPESENTENCE, sentence);
     }
 
+    public void continueConversation(){
+        string sentence = conversationQueue.Dequeue();
+        currentSentence = sentence;
+
+        StopAllCoroutines();
+        StartCoroutine(TYPESENTENCE, sentence);
+    }
+    
+    
+    public void ChangeDialogueQueue(){
+        Debug.Log(boxButton.GetComponent<Button>().onClick.ToString());
+        if(buttonCallback != null){
+            boxButton.onClick.RemoveListener(buttonCallback);
+            isChangedQueue = true;
+        }
+        Debug.Log("갈아치움");
+
+        buttonCallback = () => this.StartConversation();
+        
+        boxButton.onClick.AddListener(buttonCallback);
+
+    }
 }

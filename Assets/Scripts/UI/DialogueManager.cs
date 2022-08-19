@@ -22,6 +22,8 @@ public class DialogueManager : MonoBehaviour
     [HideInInspector]
     public Queue<string> centreTextQueue;
     [HideInInspector]
+    public Queue<string> conversationQueue;
+    [HideInInspector]
     public const string TYPESENTENCE = "TypeSentence";
     [HideInInspector]
     public const string FADEOUT = "TextFadeOut";
@@ -39,9 +41,11 @@ public class DialogueManager : MonoBehaviour
     public virtual void Awake() {
         sentences = new Queue<string>();
         centreTextQueue = new Queue<string>();
+        conversationQueue = new Queue<string>();
         Color currentColor = centreField.color;
         // 초기 중앙 문구 안보이게 하기
         centreField.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0);
+        
     }
 
     public virtual void Update() {
@@ -71,6 +75,15 @@ public class DialogueManager : MonoBehaviour
         // DialogueTrigger.Start()로 자동 실행되게 하기
         DisplayNextSentence();
     }
+
+    public void InitConversationQueue(Dialogue dialogue, int i){
+        conversationQueue.Clear();
+
+        foreach (string sentence in dialogue.conversationSentences){
+            conversationQueue.Enqueue(sentence);
+        }
+    }
+
 
     public virtual void DisplayNextSentence(){
         
