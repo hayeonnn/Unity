@@ -1066,6 +1066,7 @@ GameObject:
   - component: {fileID: 553170561}
   - component: {fileID: 553170560}
   - component: {fileID: 553170559}
+  - component: {fileID: 553170562}
   m_Layer: 5
   m_Name: PreviousButton
   m_TagString: Untagged
@@ -1136,9 +1137,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 782588438}
-        m_TargetAssemblyTypeName: Information, Assembly-CSharp
-        m_MethodName: onClickPrevButton
+      - m_Target: {fileID: 553170562}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: SceneChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1186,6 +1187,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 553170557}
   m_CullTransparentMesh: 1
+--- !u!114 &553170562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553170557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3b54acb23c83547b1d0b88f9caed96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetScene: Main
 --- !u!1 &598915145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,8 +1723,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78dc1cbcc4d77de409a998f898442d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlaying: 0
   fadeImg: {fileID: 248937245}
   fadeRate: 2
+  isInGame: 0
+  isFadeOutOver: 0
 --- !u!114 &782588440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1723,8 +1740,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d4f4e96f118ca4c8ad9150fbb5dad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlaying: 0
   fadeImg: {fileID: 248937245}
   fadeRate: 2
+  isInGame: 0
+  isFadeInOver: 0
 --- !u!1 &810011773
 GameObject:
   m_ObjectHideFlags: 0
