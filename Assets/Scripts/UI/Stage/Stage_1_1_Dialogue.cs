@@ -199,6 +199,8 @@ public class Stage_1_1_Dialogue : DialogueManager
             playerPortait.gameObject.SetActive(false);
             
             nextImg.sprite = clearSprite;
+
+            returnMap.gameObject.SetActive(true);
             return;
         }
 

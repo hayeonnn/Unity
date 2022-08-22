@@ -38,7 +38,7 @@ public class DialogueManager : MonoBehaviour
     public string currentSentence;
 
     public Button boxButton;
-
+    public Button returnMap;
     public virtual void Awake() {
         sentences = new Queue<string>();
         centreTextQueue = new Queue<string>();
