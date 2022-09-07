@@ -90,6 +90,39 @@ public class Stage_1_1_Dialogue : DialogueManager
         }
         
     }
+    // debugging function only
+    public void PrologueSkip(){
+
+        GameObject.Find("Canvas").transform.Find("Skip").gameObject.SetActive(false);
+        
+        sentences.Clear();
+        centreTextQueue.Dequeue();
+
+        showImg.gameObject.SetActive(true);
+        boxButton.gameObject.SetActive(false);
+
+        EndDialogue();
+        endPrologue = true;
+            
+        foreach (GameObject objects in inGameObjects){
+            objects.gameObject.SetActive(true);
+        }
+
+        mainCamera.transform.SetParent(inGameObjects[0].transform);
+
+        showImg.gameObject.SetActive(false);
+        nextImg.gameObject.SetActive(false);
+        boxButton.gameObject.SetActive(false);
+        fadeIn.isFadeInOver = false;
+                
+        tmpCentrePosition.y += 200;
+
+        centreField.transform.position = tmpCentrePosition;
+
+        this.DisplayNextCentreText();
+            
+        return;
+    }
 
 
     public override void DisplayNextCentreText()
