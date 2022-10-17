@@ -17,7 +17,7 @@ public class Stage_1_1_Dialogue : DialogueManager
     public GameObject[] inGameObjects;
     public GameObject mainCamera;
     public GameObject finishTrigger;
-
+     
     Sprite starRainSprite;
     Sprite ruinBuildingSprite;
     Sprite escapeSprite;
